@@ -5,6 +5,8 @@ This is a simple sample of a Notification Bar solution. It consists of all three
 - A Notication Activation (Command Set extension), which can activate or deactivate Notifications on the Notification list. 
 - A Notification Type column formatter (Field Customizer extension), which renders the Notification type as a color.
 
+![Alt text](/sample_screenshot.jpg?raw=true "Optional Title")
+
 ### Building the code
 
 Install all dependencies
