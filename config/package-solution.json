@@ -1,0 +1,25 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "sp-connect-fx-extensions-full-client-side-solution",
+    "id": "e707cd4e-6a63-4fd7-a2f4-689fd9cea8bb",
+    "version": "1.0.0.0", 
+    "skipFeatureDeployment": false,
+    "features": [
+      {
+        "title": "Application Extension - Deployment of custom action.",
+        "description": "Deploys a custom action with ClientSideComponentId association",
+        "id": "e91afc44-f145-41d5-908a-fd0b27b2145b",
+        "version": "1.0.0.0",
+        "assets": {
+          "elementManifests": [
+            "elements.xml"
+          ]
+        }
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-connect-fx-extensions-full.sppkg"
+  }
+}

@@ -1,0 +1,25 @@
+.NotificationType {
+  span {
+    padding: 2px 7px;
+    border-radius: 3px;
+    color:white;
+    display: 'inline-block';
+  }
+
+  &.importantCell {
+    span {  
+      // background-color: "[theme:themePrimary, default:#106ebe]";    
+      background: #ffb900;
+    }
+  }
+  &.warningCell {
+    span {
+      background: #e81123;
+    }
+  }
+  &.infoCell {
+    span {
+      background: #106ebe;
+    }
+  }
+}

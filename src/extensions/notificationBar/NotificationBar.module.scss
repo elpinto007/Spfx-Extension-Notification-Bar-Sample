@@ -1,0 +1,26 @@
+.appCustomizer {
+
+    .notificationBar {
+        height:50px;
+        text-align:center;
+        line-height:2.5;
+        font-weight:bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;      
+        color:white;
+
+        &.infoNotification {
+            background-color: #106ebe;
+        }
+
+        &.importantNotification {
+            background-color: #ffb900;
+            color:#333;
+        }
+
+        &.warningNotification {
+            background-color: #e81123;
+        }
+    }  
+}

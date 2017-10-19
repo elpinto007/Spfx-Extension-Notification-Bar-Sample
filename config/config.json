@@ -1,0 +1,36 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "notification-bar-application-customizer": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/notificationBar/NotificationBarApplicationCustomizer.js",
+          "manifest": "./src/extensions/notificationBar/NotificationBarApplicationCustomizer.manifest.json"
+        }
+      ]
+    },
+    "notification-activation-command-set": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/notificationActivation/NotificationActivationCommandSet.js",
+          "manifest": "./src/extensions/notificationActivation/NotificationActivationCommandSet.manifest.json"
+        }
+      ]
+    },
+    "notification-type-field-customizer": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/notificationType/NotificationTypeFieldCustomizer.js",
+          "manifest": "./src/extensions/notificationType/NotificationTypeFieldCustomizer.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "NotificationBarApplicationCustomizerStrings": "lib/extensions/notificationBar/loc/{locale}.js",
+    "NotificationActivationCommandSetStrings": "lib/extensions/notificationActivation/loc/{locale}.js",
+    "NotificationTypeFieldCustomizerStrings": "lib/extensions/notificationType/loc/{locale}.js"
+  }
+}

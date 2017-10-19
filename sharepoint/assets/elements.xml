@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+
+    <CustomAction
+        Title="NotificationBar"
+        Location="ClientSideExtension.ApplicationCustomizer"
+        ClientSideComponentId="d3359529-056c-4575-aab6-ba589bc70dd2"
+        ClientSideComponentProperties="{&quot;testMessage&quot;:&quot;Test message&quot;}">
+    </CustomAction>
+
+    <CustomAction
+        Title="NotificationActivation"
+        RegistrationId="100"
+        RegistrationType="List"
+        Location="ClientSideExtension.ListViewCommandSet.CommandBar"
+        ClientSideComponentId="00ba0713-ed47-40f2-951c-d9b7dc9160c8"
+        ClientSideComponentProperties="{&quot;sampleTextOne&quot;:&quot;One item is selected in the list.&quot;, &quot;sampleTextTwo&quot;:&quot;This command is always visible.&quot;}">
+    </CustomAction>
+    
+    <Field ID="{6ffa461c-117a-4c6a-862d-6597c5de7720}"
+            Name="NotificationType"
+            DisplayName="Notification Type"
+            Type="Choice"            
+            Required="TRUE"
+            Group="Sample Columns"
+            ClientSideComponentId="2ec5507f-26ff-4a5f-8aa6-3b56a1d33064">
+            <Choices>
+                <Choice>Info</Choice>
+                <Choice>Important</Choice>
+                <Choice>Warning</Choice>
+            </Choices>
+            <Default>Info</Default>
+    </Field>
+    
+</Elements>
