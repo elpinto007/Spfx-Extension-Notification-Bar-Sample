@@ -7,7 +7,7 @@ This is a simple sample of a Notification Bar solution. It consists of all three
 
 ![Alt text](/sample_screenshot.jpg?raw=true "Screenshot of Notification Bar sample")
 
-### Building the code
+### Prerequisites
 
 Install all dependencies
 ```bash
@@ -15,6 +15,8 @@ git clone the repo
 npm i -g npm@3.x gulp yeoman @microsoft/generator-sharepoint
 npm i
 ```
+
+Use VSCode or any editor of your choice.
 
 ### Creating the necessary SharePoint objects
 
