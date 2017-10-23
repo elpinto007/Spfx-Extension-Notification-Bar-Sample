@@ -45,6 +45,8 @@ export default class NotificationBarApplicationCustomizer
         }
 
       });
+      
+      resolve();
     });
   }
 
