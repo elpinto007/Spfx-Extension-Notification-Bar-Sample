@@ -21,33 +21,26 @@ export default class NotificationBarApplicationCustomizer
   extends BaseApplicationCustomizer<INotificationBarApplicationCustomizerProperties> {
 
   @override
-  public onInit(): Promise<void> {
+  public async onInit(): Promise<void> {
     Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
 
-    return new Promise((resolve) => {
+    var notification:INotificationItem = await this.getNotification();
 
-      this.getNotification().then((notification: INotificationItem) => {
+    if (!this._topPlaceholder) {
+      this._topPlaceholder = this.context.placeholderProvider.tryCreateContent(PlaceholderName.Top,
+        { onDispose: this._onDispose });
 
-        if (!this._topPlaceholder) {
-          this._topPlaceholder = this.context.placeholderProvider.tryCreateContent(PlaceholderName.Top, 
-            { onDispose: this._onDispose });
+      if (!this._topPlaceholder) { return console.error("The expected placeholder (Top) was not found."); }
 
-          if (!this._topPlaceholder) { return console.error("The expected placeholder (Top) was not found."); }
-
-          if (this._topPlaceholder.domElement) {
-            this._topPlaceholder.domElement.innerHTML = `
-                  <div class="${styles.appCustomizer}">
-                    <div class="${styles.notificationBar} ${this.getNotificationType(notification)}">
-                      <i class="ms-Icon ms-Icon--Info" aria-hidden="true"></i> &nbsp;${notification.Title}
-                    </div>
-                  </div>`;
-          }
-        }
-
-      });
-      
-      resolve();
-    });
+      if (this._topPlaceholder.domElement) {
+        this._topPlaceholder.domElement.innerHTML = `
+                <div class="${styles.appCustomizer}">
+                  <div class="${styles.notificationBar} ${this.getNotificationType(notification)}">
+                    ${notification.Title}
+                  </div>
+                </div>`;
+      }
+    }
   }
 
   private getNotification = (): Promise<INotificationItem> => {
@@ -58,21 +51,21 @@ export default class NotificationBarApplicationCustomizer
     return new Promise((resolve) => {
 
       pnp.sp.web.lists.getByTitle("Notifications")
-      .items
-      .select(FIELD_NOTIFICATIONTEXT, FIELD_NOTIFICATIONTYPE, FIELD_NOTIFICATIONACTIVE)
-      .filter(`${FIELD_NOTIFICATIONACTIVE} eq 1`)
-      .get()
-      .then((items: INotificationItem[]) => {
+        .items
+        .select(FIELD_NOTIFICATIONTEXT, FIELD_NOTIFICATIONTYPE, FIELD_NOTIFICATIONACTIVE)
+        .filter(`${FIELD_NOTIFICATIONACTIVE} eq 1`)
+        .get()
+        .then((items: INotificationItem[]) => {
           console.log(`Got data: ${items.length}`);
-          if(items.length > 0) {
+          if (items.length > 0) {
             resolve(items[0]);
           }
-      });
+        });
     });
   }
 
   private getNotificationType = (notification: INotificationItem): any => {
-    switch(notification.NotificationType) {
+    switch (notification.NotificationType) {
       case "Important":
         return styles.importantNotification;
       case "Warning":

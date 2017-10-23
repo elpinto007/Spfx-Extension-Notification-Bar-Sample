@@ -32,19 +32,19 @@ export default class NotificationTypeFieldCustomizer
 
   @override
   public onRenderCell(event: IFieldCustomizerCellEventParameters): void {
-    
+
     event.domElement.innerHTML = `<span>${event.fieldValue}</span>`;
     event.domElement.classList.add(styles.NotificationType);
 
     switch(event.fieldValue) {
       case "Important":
-        event.domElement.classList.add(styles.importantCell);
+        event.domElement.classList.add(styles.sampleVeryImportantCell);
         break;
       case "Warning":
-        event.domElement.classList.add(styles.warningCell);
+        event.domElement.classList.add(styles.sampleWarningCell);
         break;
       default:
-        event.domElement.classList.add(styles.infoCell);
+        event.domElement.classList.add(styles.sampleInfoCell);
         break;
     }
   }

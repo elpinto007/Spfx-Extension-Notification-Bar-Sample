@@ -6,18 +6,19 @@
     display: 'inline-block';
   }
 
-  &.importantCell {
+  &.sampleVeryImportantCell {
     span {  
+      // also possible! The use of theme colors:
       // background-color: "[theme:themePrimary, default:#106ebe]";    
       background: #ffb900;
     }
   }
-  &.warningCell {
+  &.sampleWarningCell {
     span {
       background: #e81123;
     }
   }
-  &.infoCell {
+  &.sampleInfoCell {
     span {
       background: #106ebe;
     }
