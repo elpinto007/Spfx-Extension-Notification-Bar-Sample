@@ -54,13 +54,14 @@ export default class NotificationActivationCommandSet extends BaseListViewComman
 
   @override
   public onExecute(event: IListViewCommandSetExecuteEventParameters): void {
-    var itemId: number = parseFloat(event.selectedRows[0].getValueByName("ID"));
-    switch (event.itemId) {
+    var listItemId: number = parseFloat(event.selectedRows[0].getValueByName("ID"));
+    var commandId: string = event.itemId;
+    switch (commandId) {
       case "COMMAND_ACTIVATE":
-        this.updateNotificationStatus(itemId, true);
+        this.updateNotificationStatus(listItemId, true);
         break;
       case "COMMAND_DEACTIVATE":
-        this.updateNotificationStatus(itemId, false);
+        this.updateNotificationStatus(listItemId, false);
         break;
       default:
         throw new Error("Unknown command");
