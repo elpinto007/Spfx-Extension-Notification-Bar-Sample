@@ -24,49 +24,49 @@ export default class NotificationBarApplicationCustomizer
   public onInit(): Promise<void> {
     Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
 
+    return new Promise((resolve) => {
+
+      this.getNotification().then((notification: INotificationItem) => {
+
+        if (!this._topPlaceholder) {
+          this._topPlaceholder = this.context.placeholderProvider.tryCreateContent(PlaceholderName.Top, 
+            { onDispose: this._onDispose });
+
+          if (!this._topPlaceholder) { return console.error("The expected placeholder (Top) was not found."); }
+
+          if (this._topPlaceholder.domElement) {
+            this._topPlaceholder.domElement.innerHTML = `
+                  <div class="${styles.appCustomizer}">
+                    <div class="${styles.notificationBar} ${this.getNotificationType(notification)}">
+                      <i class="ms-Icon ms-Icon--Info" aria-hidden="true"></i> &nbsp;${notification.Title}
+                    </div>
+                  </div>`;
+          }
+        }
+
+      });
+    });
+  }
+
+  private getNotification = (): Promise<INotificationItem> => {
     pnp.setup({
       spfxContext: this.context
     });
 
-    this.getNotification();
+    return new Promise((resolve) => {
 
-    return Promise.resolve();
-  }
-
-  private getNotification = (): void => {
-
-    pnp.sp.web.lists.getByTitle("Notifications")
-    .items
-    .select(FIELD_NOTIFICATIONTEXT, FIELD_NOTIFICATIONTYPE, FIELD_NOTIFICATIONACTIVE)
-    .filter(`${FIELD_NOTIFICATIONACTIVE} eq 1`)
-    .get()
-    .then((items: INotificationItem[]) => {
-        console.log(`Got data: ${items.length}`);
-        if(items.length > 0) {
-          this.renderNotificationInTopPlaceholder(items[0]);
-        }
-
-    }, (error) => {
-      console.error(error);
+      pnp.sp.web.lists.getByTitle("Notifications")
+      .items
+      .select(FIELD_NOTIFICATIONTEXT, FIELD_NOTIFICATIONTYPE, FIELD_NOTIFICATIONACTIVE)
+      .filter(`${FIELD_NOTIFICATIONACTIVE} eq 1`)
+      .get()
+      .then((items: INotificationItem[]) => {
+          console.log(`Got data: ${items.length}`);
+          if(items.length > 0) {
+            resolve(items[0]);
+          }
+      });
     });
-  }
-
-  private renderNotificationInTopPlaceholder = (notification: INotificationItem): void => {
-    if (!this._topPlaceholder) {
-      this._topPlaceholder = this.context.placeholderProvider.tryCreateContent(PlaceholderName.Top, { onDispose: this._onDispose });
-
-      if (!this._topPlaceholder) { return console.error("The expected placeholder (Top) was not found."); }
-
-      console.log(notification);
-      if (this._topPlaceholder.domElement) {
-        this._topPlaceholder.domElement.innerHTML = `
-              <div class="${styles.appCustomizer}">
-                <div class="${styles.notificationBar} ${this.getNotificationType(notification)}">
-                  <i class="ms-Icon ms-Icon--Info" aria-hidden="true"></i> &nbsp;${notification.Title}
-                </div>
-              </div>`;
-      }
-    }
   }
 
   private getNotificationType = (notification: INotificationItem): any => {

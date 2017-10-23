@@ -16,12 +16,17 @@ npm i -g npm@3.x gulp yeoman @microsoft/generator-sharepoint
 npm i
 ```
 
+Trust certificate (if not already done)
+```bash
+gulp trust-dev-cert
+```
+
 Use VSCode or any editor of your choice.
 
 ### Creating the necessary SharePoint objects
 
 - Create a modern Teamsite on your tenant
-- Create a generic list on the Teamsite
+- Create a generic list with the title 'Notifications' on the Teamsite
 - Add two columns: NotificationType (Choice - with options: Info, Warning, Important), Active (Yes/No)
 - Add some dummy items, set one to active = yes.
 
